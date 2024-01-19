@@ -1,0 +1,32 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+.Python
+env/
+venv/
+build/
+dist/
+downloads/
+.venv/lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+
+# Environments
+.env
+.env.local
+.venv
+
+# PyCharm specific
+.idea/
+*.iml
+
+# Reports
+result.xml
+
