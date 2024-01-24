@@ -29,3 +29,9 @@ class Bookings:
         if response.status_code != expected_status:
             raise ValueError(f"Unexpected status code: {response.status_code}, expected: {expected_status}")
         return parse_json_response(response)
+
+    def delete(self, booking_id, expected_status=200):
+        response = self.api_client.delete(f'/booking/{booking_id}')
+        if response.status_code != expected_status:
+            raise ValueError(f"Unexpected status code: {response.status_code}, expected: {expected_status}")
+        return parse_json_response(response)
