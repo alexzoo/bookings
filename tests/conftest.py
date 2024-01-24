@@ -1,7 +1,7 @@
 import pytest
 
 from utils.api_client import ApiClient
-from utils.bookings import Bookings
+from services.bookings import Bookings
 
 
 @pytest.fixture
