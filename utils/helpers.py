@@ -2,7 +2,7 @@ import json
 from requests import Response
 
 
-def parse_json_response(response: Response) -> dict:
+def parse_json_response(response: Response) -> dict | Response:
     """Converts a JSON response from an API into a Python dictionary.
         Args:
             response: Response object from the requests library.
@@ -14,4 +14,4 @@ def parse_json_response(response: Response) -> dict:
     try:
         return response.json()
     except json.JSONDecodeError:
-        raise ValueError("Response is not a valid JSON")
+        return response
