@@ -6,10 +6,10 @@ class TestBookings:
 
     def test_get_booking_by_name(self, bookings):
         data = bookings.get_by_name('Alex', 'Zoo')
-        assert data[0]['bookingid'] == 392
+        assert data[0]['bookingid'] == 4624
 
     def test_get_with_details_by_id(self, bookings):
-        booking_id = 392
+        booking_id = 4624
         data = bookings.get_by_id(booking_id)
         assert 'Alex' in data['firstname']
         assert 'Zoo' in data['lastname']
