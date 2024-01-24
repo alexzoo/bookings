@@ -15,7 +15,7 @@ def test_get_booking_by_name(api_client):
 
 
 def test_get_with_details_by_id(api_client):
-    booking_id = 3365
+    booking_id = 5
     response = api_client.get(f'/booking/{booking_id}')
     assert response.status_code == 200
 
