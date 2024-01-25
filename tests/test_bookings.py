@@ -1,5 +1,5 @@
 
-from models.model_booking import BookingRequest, BookingDates, BookingResponse
+from models.booking_model import BookingRequest, BookingDates, BookingResponse
 
 
 class TestBookings:
