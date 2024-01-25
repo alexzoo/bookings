@@ -27,7 +27,7 @@ class TestBookings:
 
     def test_get_with_details_by_id(self, bookings):
         booking_id = 1
-        response = bookings.get_by_id(booking_id)
+        response = bookings.get_by_id(booking_id=booking_id)
         booking_response = BookingGetByIdResponse(**response)
         assert isinstance(booking_response.firstname, str)
         assert isinstance(booking_response.lastname, str)
