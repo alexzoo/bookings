@@ -7,7 +7,7 @@ class BookingDates(BaseModel):
     checkout: str
 
 
-class BookingRequest(BaseModel):
+class BookingCreateRequest(BaseModel):
     firstname: str
     lastname: str
     totalprice: int
@@ -16,6 +16,15 @@ class BookingRequest(BaseModel):
     additionalneeds: str
 
 
-class BookingResponse(BaseModel):
+class BookingCreateResponse(BaseModel):
     bookingid: int
-    booking: BookingRequest
+    booking: BookingCreateRequest
+
+
+class BookingGetByIdResponse(BaseModel):
+    firstname: str
+    lastname: str
+    totalprice: int
+    depositpaid: bool
+    bookingdates: BookingDates
+    additionalneeds: str
