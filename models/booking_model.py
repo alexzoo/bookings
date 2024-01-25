@@ -28,3 +28,9 @@ class BookingGetByIdResponse(BaseModel):
     depositpaid: bool
     bookingdates: BookingDates
     additionalneeds: str
+
+
+class BookingID(BaseModel):
+    bookingid: int
+
+
