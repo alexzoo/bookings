@@ -1,10 +1,5 @@
-
-<<<<<<< HEAD
-from models.model_booking import (BookingCreateRequest, BookingDates,
+from models.booking_model import (BookingCreateRequest, BookingDates,
                                   BookingCreateResponse, BookingGetByIdResponse)
-=======
-from models.booking_model import BookingRequest, BookingDates, BookingResponse
->>>>>>> main
 
 
 class TestBookings:
@@ -19,7 +14,7 @@ class TestBookings:
                                             totalprice=111,
                                             depositpaid=True,
                                             bookingdates=BookingDates(checkin='2024-02-10',
-                                                                checkout='2024-02-20'),
+                                                                      checkout='2024-02-20'),
                                             additionalneeds='Breakfast')
 
         response = bookings.create(booking_data=booking_data.model_dump())
