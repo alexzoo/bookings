@@ -1,6 +1,10 @@
 
+<<<<<<< HEAD
 from models.model_booking import (BookingCreateRequest, BookingDates,
                                   BookingCreateResponse, BookingGetByIdResponse)
+=======
+from models.booking_model import BookingRequest, BookingDates, BookingResponse
+>>>>>>> main
 
 
 class TestBookings:
