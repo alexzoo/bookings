@@ -29,4 +29,6 @@ share/python-wheels/
 
 # Reports
 result.xml
+allure-results/
+
 
