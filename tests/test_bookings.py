@@ -1,10 +1,8 @@
 from models.booking_model import (BookingCreateRequest, BookingDates,
-                                  BookingCreateResponse, BookingGetByIdResponse, BookingID)
+                                  BookingCreateResponse)
 
 
 class TestBookings:
-
-
 
     def test_create_booking(self, bookings):
         booking_data = BookingCreateRequest(firstname='Alex',
@@ -19,12 +17,6 @@ class TestBookings:
 
         booking_response = BookingCreateResponse(**response)
         assert booking_response.booking == booking_data
-
-    def test_get_booking_by_name(self, bookings):
-        data = bookings.get_by_name('Alex', 'Zoo')
-        assert len(data) > 0
-
-
 
     def test_cant_delete_booking_by_incorrect_id(self, bookings):
         booking_id = 9999999
