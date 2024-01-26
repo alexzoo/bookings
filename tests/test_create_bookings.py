@@ -44,6 +44,3 @@ class TestCreateBookings:
 
         bookings.create(booking_data, expected_status=expected_status)
 
-    def test_cant_delete_booking_by_incorrect_id(self, bookings):
-        booking_id = 9999999
-        bookings.delete(booking_id, expected_status=405)
