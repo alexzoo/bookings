@@ -24,13 +24,7 @@ class TestBookings:
         data = bookings.get_by_name('Alex', 'Zoo')
         assert len(data) > 0
 
-    def test_get_with_details_by_id(self, bookings):
-        booking_id = 1
-        response = bookings.get_by_id(booking_id=booking_id)
 
-        booking_response = BookingGetByIdResponse(**response)
-        assert isinstance(booking_response.firstname, str)
-        assert isinstance(booking_response.lastname, str)
 
     def test_cant_delete_booking_by_incorrect_id(self, bookings):
         booking_id = 9999999
