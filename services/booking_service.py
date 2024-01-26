@@ -60,6 +60,46 @@ class Bookings:
             raise ValueError(f"Unexpected status code: {response.status_code}, expected: {expected_status}")
         return parse_json_response(response)
 
+    def get_by_checkin(self, checkin, expected_status=200):
+        """
+        Sends a GET request to retrieve booking information by checkin date.
+
+        Args:
+            checkin (str): The checkin date of the booking.
+            expected_status (int, optional): The expected HTTP status code. Defaults to 200.
+
+        Returns:
+            dict: The parsed JSON response containing the booking information.
+
+        Raises:
+            ValueError: If the response status code does not match the expected status.
+        """
+        params = {'checkin': checkin}
+        response = self.api_client.get('/booking', params=params)
+        if response.status_code != expected_status:
+            raise ValueError(f"Unexpected status code: {response.status_code}, expected: {expected_status}")
+        return parse_json_response(response)
+
+    def get_by_checkout(self, checkout, expected_status=200):
+        """
+        Sends a GET request to retrieve booking information by checkout date.
+
+        Args:
+            checkout (str): The checkout date of the booking.
+            expected_status (int, optional): The expected HTTP status code. Defaults to 200.
+
+        Returns:
+            dict: The parsed JSON response containing the booking information.
+
+        Raises:
+            ValueError: If the response status code does not match the expected status.
+        """
+        params = {'checkout': checkout}
+        response = self.api_client.get('/booking', params=params)
+        if response.status_code != expected_status:
+            raise ValueError(f"Unexpected status code: {response.status_code}, expected: {expected_status}")
+        return parse_json_response(response)
+
     def create(self, booking_data, expected_status=200):
         """
         Makes a POST request to create a booking with the provided data.

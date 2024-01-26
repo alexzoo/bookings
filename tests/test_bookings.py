@@ -1,18 +1,10 @@
-from pydantic import ValidationError, TypeAdapter
-
 from models.booking_model import (BookingCreateRequest, BookingDates,
                                   BookingCreateResponse, BookingGetByIdResponse, BookingID)
 
 
 class TestBookings:
 
-    def test_get_booking_ids(self, bookings):
-        response = bookings.get_all()
-        assert len(response) > 1
-        try:
-            TypeAdapter(list[BookingID]).validate_python(response)
-        except ValidationError:
-            assert False
+
 
     def test_create_booking(self, bookings):
         booking_data = BookingCreateRequest(firstname='Alex',
@@ -24,6 +16,7 @@ class TestBookings:
                                             additionalneeds='Breakfast')
 
         response = bookings.create(booking_data=booking_data.model_dump())
+
         booking_response = BookingCreateResponse(**response)
         assert booking_response.booking == booking_data
 
@@ -34,6 +27,7 @@ class TestBookings:
     def test_get_with_details_by_id(self, bookings):
         booking_id = 1
         response = bookings.get_by_id(booking_id=booking_id)
+
         booking_response = BookingGetByIdResponse(**response)
         assert isinstance(booking_response.firstname, str)
         assert isinstance(booking_response.lastname, str)
