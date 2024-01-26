@@ -116,6 +116,26 @@ class Bookings:
             raise ValueError(f"Unexpected status code: {response.status_code}, expected: {expected_status}")
         return parse_json_response(response)
 
+    def update(self, booking_id, update_booking_data, expected_status=200):
+        """
+        Makes a PUT request to update a booking with the provided data.
+
+        Args:
+            booking_id: The ID of the booking to be updated.
+            update_booking_data: The data for updating the booking.
+            expected_status: The expected HTTP status code (default is 200).
+
+        Returns:
+            The parsed JSON response from the PUT request.
+
+        Raises:
+            ValueError: If the response status code is not the expected status code.
+        """
+        response = self.api_client.put(f'/booking/{booking_id}', json=update_booking_data)
+        if response.status_code != expected_status:
+            raise ValueError(f"Unexpected status code: {response.status_code}, expected: {expected_status}")
+        return parse_json_response(response)
+
     def delete(self, booking_id, expected_status=200):
         """
         Deletes a booking by sending a DELETE request to the API.
