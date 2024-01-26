@@ -21,6 +21,15 @@ class BookingCreateResponse(BaseModel):
     booking: BookingCreateRequest
 
 
+class BookingUpdateResponse(BaseModel):
+    firstname: str
+    lastname: str
+    totalprice: int
+    depositpaid: bool
+    bookingdates: BookingDates
+    additionalneeds: str
+
+
 class BookingGetByIdResponse(BaseModel):
     firstname: str
     lastname: str
