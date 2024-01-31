@@ -1,10 +1,12 @@
 import allure
+import pytest
 
 from models.booking_model import BookingCreateRequest, BookingDates, BookingCreateResponse
 
 
 class TestDeleteBookings:
 
+    @pytest.mark.smoke
     def test_delete_booking_by_id(self, bookings):
         with allure.step('Create new booking'):
             booking_data = BookingCreateRequest(firstname='Alex',
