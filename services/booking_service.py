@@ -1,9 +1,10 @@
 from utils.helpers import parse_json_response
+from utils.api_client import ApiClient
 
 
 class Bookings:
-    def __init__(self, api_client):
-        self.api_client = api_client
+    def __init__(self):
+        self.api_client = ApiClient()
 
     def get_all(self, expected_status=200):
         """
