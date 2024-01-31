@@ -38,4 +38,4 @@ jobs:
 
       - name: with_errors
         if: "github.event.inputs.deployment_target == 'with_errors' "
-        run: pytest -m "with_error"
+        run: pytest -m "with_errors"
