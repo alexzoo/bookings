@@ -4,3 +4,4 @@ python-dotenv
 pydantic
 allure-pytest
 pytest-sugar
+Faker
