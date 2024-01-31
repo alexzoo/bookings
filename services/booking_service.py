@@ -17,8 +17,8 @@ class Bookings:
         :raises ValueError: If the response status code is not the expected status code.
         """
         response = self.api_client.get('/booking')
-        if response.status_code != expected_status:
-            raise ValueError(f"Unexpected status code: {response.status_code}, expected: {expected_status}")
+        assert response.status_code == expected_status, (f"Unexpected status code: {response.status_code}, "
+                                                         f"expected: {expected_status}")
         return parse_json_response(response)
 
     def get_by_name(self, firstname, lastname, expected_status=200):
@@ -38,8 +38,8 @@ class Bookings:
         """
         params = {'firstname': firstname, 'lastname': lastname}
         response = self.api_client.get('/booking', params=params)
-        if response.status_code != expected_status:
-            raise ValueError(f"Unexpected status code: {response.status_code}, expected: {expected_status}")
+        assert response.status_code == expected_status, (f"Unexpected status code: {response.status_code}, "
+                                                         f"expected: {expected_status}")
         return parse_json_response(response)
 
     def get_by_id(self, booking_id, expected_status=200):
@@ -57,8 +57,8 @@ class Bookings:
             ValueError: If the response status code does not match the expected status.
         """
         response = self.api_client.get(f'/booking/{booking_id}')
-        if response.status_code != expected_status:
-            raise ValueError(f"Unexpected status code: {response.status_code}, expected: {expected_status}")
+        assert response.status_code == expected_status, (f"Unexpected status code: {response.status_code}, "
+                                                         f"expected: {expected_status}")
         return parse_json_response(response)
 
     def get_by_checkin(self, checkin, expected_status=200):
@@ -77,8 +77,8 @@ class Bookings:
         """
         params = {'checkin': checkin}
         response = self.api_client.get('/booking', params=params)
-        if response.status_code != expected_status:
-            raise ValueError(f"Unexpected status code: {response.status_code}, expected: {expected_status}")
+        assert response.status_code == expected_status, (f"Unexpected status code: {response.status_code}, "
+                                                         f"expected: {expected_status}")
         return parse_json_response(response)
 
     def get_by_checkout(self, checkout, expected_status=200):
@@ -97,8 +97,8 @@ class Bookings:
         """
         params = {'checkout': checkout}
         response = self.api_client.get('/booking', params=params)
-        if response.status_code != expected_status:
-            raise ValueError(f"Unexpected status code: {response.status_code}, expected: {expected_status}")
+        assert response.status_code == expected_status, (f"Unexpected status code: {response.status_code}, "
+                                                         f"expected: {expected_status}")
         return parse_json_response(response)
 
     def create(self, booking_data, expected_status=200):
@@ -113,8 +113,8 @@ class Bookings:
             The parsed JSON response from the POST request.
         """
         response = self.api_client.post('/booking', json=booking_data)
-        if response.status_code != expected_status:
-            raise ValueError(f"Unexpected status code: {response.status_code}, expected: {expected_status}")
+        assert response.status_code == expected_status, (f"Unexpected status code: {response.status_code}, "
+                                                         f"expected: {expected_status}")
         return parse_json_response(response)
 
     def update(self, booking_id, update_booking_data, expected_status=200):
@@ -133,8 +133,8 @@ class Bookings:
             ValueError: If the response status code is not the expected status code.
         """
         response = self.api_client.put(f'/booking/{booking_id}', json=update_booking_data)
-        if response.status_code != expected_status:
-            raise ValueError(f"Unexpected status code: {response.status_code}, expected: {expected_status}")
+        assert response.status_code == expected_status, (f"Unexpected status code: {response.status_code}, "
+                                                         f"expected: {expected_status}")
         return parse_json_response(response)
 
     def delete(self, booking_id, expected_status=200):
@@ -152,6 +152,6 @@ class Bookings:
             ValueError: If the response status code is not the expected status code.
         """
         response = self.api_client.delete(f'/booking/{booking_id}')
-        if response.status_code != expected_status:
-            raise ValueError(f"Unexpected status code: {response.status_code}, expected: {expected_status}")
+        assert response.status_code == expected_status, (f"Unexpected status code: {response.status_code}, "
+                                                         f"expected: {expected_status}")
         return parse_json_response(response)
