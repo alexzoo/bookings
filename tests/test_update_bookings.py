@@ -44,7 +44,7 @@ class TestUpdateBooking:
             assert update_booking_response.additionalneeds == update_booking_data.additionalneeds
 
     # The following test find 1 bug - it's OK
-    @pytest.mark.with_error
+    @pytest.mark.with_errors
     def test_cant_update_booking_with_incorrect_data(self, bookings):
         with allure.step('Create new booking'):
             booking_data = BookingCreateRequest(firstname='Alex',
