@@ -13,34 +13,43 @@ class TestGetBookingsIds:
         for booking_id in response:
             BookingID(**booking_id)
 
-    @pytest.mark.with_error
-    def test_get_booking_by_id(self, bookings):
-        booking_id = 3
+    @pytest.mark.smoke
+    def test_get_booking_by_id(self, bookings, create_new_booking):
+        booking_id = create_new_booking.bookingid
+        firstname = create_new_booking.booking.firstname
+        lastname = create_new_booking.booking.lastname
         response = bookings.get_by_id(booking_id=booking_id)
 
         booking_response = BookingGetByIdResponse(**response)
-        assert isinstance(booking_response.firstname, str)
-        assert isinstance(booking_response.lastname, str)
-
-    @pytest.mark.with_error
-    def test_get_booking_by_name(self, bookings):
-        data = bookings.get_by_name('Alex', 'Zoo')
-
-        assert len(data) > 0
+        assert booking_response.firstname == firstname
+        assert booking_response.lastname == lastname
 
     @pytest.mark.smoke
-    def test_get_bookings_by_checkin_date(self, bookings):
-        data = bookings.get_by_checkin('2023-02-10')
+    def test_get_booking_by_name(self, bookings, create_new_booking):
+        booking_id = create_new_booking.bookingid
+        firstname = create_new_booking.booking.firstname
+        lastname = create_new_booking.booking.lastname
+        data = bookings.get_by_name(firstname, lastname)
 
-        assert len(data) > 0
+        assert any(item.get("bookingid") == booking_id for item in data)
 
     @pytest.mark.smoke
-    def test_get_bookings_by_checkout_date(self, bookings):
-        data = bookings.get_by_checkout('2023-02-20')
+    def test_get_bookings_by_checkin_date(self, bookings, create_new_booking):
+        checkin_date = create_new_booking.booking.bookingdates.checkin
+        data = bookings.get_by_checkin(checkin_date)
 
-        assert len(data) > 0
+        assert len(data) >= 1
+
+    @pytest.mark.smoke
+    def test_get_bookings_by_checkout_date(self, bookings, create_new_booking):
+        checkout_date = create_new_booking.booking.bookingdates.checkout
+        data = bookings.get_by_checkout(checkout_date)
+
+        assert len(data) >= 1
 
     @pytest.mark.smoke
     def test_cant_get_booking_by_incorrect_id(self, bookings):
         booking_id = 9999999
         bookings.get_by_id(booking_id, expected_status=404)
+
+
