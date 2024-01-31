@@ -1,9 +1,12 @@
+import pytest
+
 from models.booking_model import BookingCreateRequest, BookingDates, BookingCreateResponse, BookingUpdateResponse
 import allure
 
 
 class TestUpdateBooking:
 
+    @pytest.mark.smoke
     def test_update_booking(self, bookings):
         with allure.step('Create new booking'):
             booking_data = BookingCreateRequest(firstname='Alex',
@@ -41,6 +44,7 @@ class TestUpdateBooking:
             assert update_booking_response.additionalneeds == update_booking_data.additionalneeds
 
     # The following test find 1 bug - it's OK
+    @pytest.mark.with_error
     def test_cant_update_booking_with_incorrect_data(self, bookings):
         with allure.step('Create new booking'):
             booking_data = BookingCreateRequest(firstname='Alex',

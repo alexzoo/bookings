@@ -6,6 +6,7 @@ from models.booking_model import (BookingCreateRequest, BookingDates,
 
 class TestCreateBookings:
 
+    @pytest.mark.smoke
     def test_create_booking(self, bookings):
         booking_data = BookingCreateRequest(firstname='Alex',
                                             lastname='Zoo',
@@ -21,6 +22,7 @@ class TestCreateBookings:
         assert booking_response.booking == booking_data
 
     # The following tests find 4 bugs - it's OK
+    @pytest.mark.with_error
     @pytest.mark.parametrize(
         "firstname, lastname, totalprice, depositpaid, checkin, checkout, additionalneeds, expected_status", [
             ('', 'Zoo', 111, True, '2024-02-10', '2024-02-20', 'Breakfast', 400),  # Empty firstname
