@@ -24,6 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download Allure history
+        continue-on-error: true
         uses: actions/download-artifact@v3
         with:
           name: allure-history
