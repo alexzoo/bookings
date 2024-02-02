@@ -2,6 +2,8 @@
 
 This project is designed for automated testing of the API provided by Restful Booker. Restful Booker offers a wide range of APIs for users who want to practice testing and developing APIs. The API documentation is available at [this link](https://restful-booker.herokuapp.com/apidoc/index.html).
 
+[Here you can find mindmap diagram for API endpoints](./docs/mindmap.svg)
+
 ## Technologies and Tools
 
 The following technologies and tools are used in this project:
