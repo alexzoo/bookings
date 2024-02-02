@@ -1,0 +1,91 @@
+@startmindmap
+
+title API endpoints
+
+* Restfull-booker
+
+left side
+
+** Auth\nCreateToken
+*** POST /auth
+
+**** fields
+***** username
+***** password
+
+**** return
+***** token
+
+right side
+
+** Booking
+
+*** GetBookingIds
+**** GET /booking
+***** parameters
+****** firstname
+****** lastname
+****** checkin
+****** checkout
+***** return
+****** bookingid
+
+*** GetBooking
+**** GET /booking
+***** url parameter
+****** id
+**** return
+***** firstname
+***** lastname
+***** totalprice
+***** depositpaid
+***** bookingdates
+****** checkin
+****** checkout
+***** additionalneeds
+
+*** CreateBooking
+**** POST /booking
+***** request body
+****** firstname
+****** lastname
+****** totalprice
+****** depositpaid
+****** bookingdates
+******* checkin
+******* checkout
+****** additionalneeds
+***** return
+****** bookingid
+****** booking
+******* firstname
+******* lastname
+******* totalprice
+******* depositpaid
+******* bookingdates
+******** checkin
+******** checkout
+******* additionalneeds
+
+*** UpdateBooking
+**** PUT /booking
+***** url parameter
+****** id
+***** return
+****** firstname
+****** lastname
+****** totalprice
+****** depositpaid
+****** bookingdates
+******* checkin
+******* checkout
+****** additionalneeds
+
+*** DeleteBooking
+**** DELETE /booking
+***** url parameter
+****** id
+***** return
+****** ok
+
+@endmindmap
