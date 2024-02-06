@@ -1,53 +1,19 @@
-from datetime import timedelta
-
-import allure
 import pytest
-from faker import Faker
 
-from models.booking_model import BookingCreateRequest, BookingDates, BookingCreateResponse
-from services.booking_service import Bookings
-
-
-@pytest.fixture
-def bookings():
-    return Bookings()
+from client.api_client import ApiClient
+from services.auth_service.auth_service import Auth
 
 
-@pytest.fixture(scope='function')
-def create_new_booking(bookings):
-    with allure.step('Generate fake data'):
-        fake = Faker()
+@pytest.fixture(scope="session")
+def auth_token():
+    auth = Auth()
+    token_response = auth.create_token()
+    token = token_response['token']
+    return token
 
-        firstname = fake.first_name()
-        lastname = fake.last_name()
-        totalprice = fake.random_int(min=100, max=1000)
-        depositpaid = fake.boolean()
-        checkin_date = fake.date_between(start_date="+1y", end_date="+2y")
-        checkout_date = checkin_date + timedelta(days=fake.random_int(min=1, max=14))
-        additionalneeds = fake.random_element(elements=("Breakfast", "Parking", "WiFi", "Late Checkout"))
 
-    with allure.step('Create new booking'):
-        booking_data = BookingCreateRequest(firstname=firstname,
-                                            lastname=lastname,
-                                            totalprice=totalprice,
-                                            depositpaid=depositpaid,
-                                            bookingdates=BookingDates(checkin=checkin_date.strftime("%Y-%m-%d"),
-                                                                      checkout=checkout_date.strftime("%Y-%m-%d")),
-                                            additionalneeds=additionalneeds)
-        response = bookings.create(booking_data=booking_data.model_dump())
-        booking_response = BookingCreateResponse(**response)
-
-    yield booking_response
-
-    with allure.step('Check if booking exists before deletion'):
-        try:
-            bookings.get_by_id(booking_id=booking_response.bookingid, expected_status=200)
-        except AssertionError as e:
-            if "Unexpected status code: 404" in str(e):
-                allure.step('Booking not found, skipping deletion')
-                return
-            else:
-                raise
-
-    with allure.step('Delete booking'):
-        bookings.delete(booking_id=booking_response.bookingid, expected_status=201)
+@pytest.fixture(scope="session")
+def api_client(auth_token):
+    client = ApiClient()
+    client.session.headers.update({"Authorization": f"Basic {auth_token}"})
+    return client
