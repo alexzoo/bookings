@@ -1,6 +1,7 @@
 import pytest
 
-from models.booking_model import BookingID, BookingGetByIdResponse
+from models.booking_get_by_id_response_model import BookingGetByIdResponse
+from models.booking_id_model import BookingID
 
 
 class TestGetBookingsIds:

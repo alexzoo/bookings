@@ -1,7 +1,8 @@
 import pytest
 
-from models.booking_model import (BookingCreateRequest, BookingDates,
-                                  BookingCreateResponse)
+from models.booking_create_response_model import BookingCreateResponse
+from models.booking_create_request_model import BookingCreateRequest
+from models.booking_dates_model import BookingDates
 
 
 class TestCreateBookings:
