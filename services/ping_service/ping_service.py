@@ -1,4 +1,4 @@
-from utils.api_client import ApiClient
+from client.api_client import ApiClient
 
 
 class Ping:

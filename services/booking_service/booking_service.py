@@ -1,5 +1,5 @@
 from utils.helpers import parse_json_response
-from utils.api_client import ApiClient
+from client.api_client import ApiClient
 
 
 class Bookings:
