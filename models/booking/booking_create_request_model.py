@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from models.booking_dates_model import BookingDates
+from models.booking.booking_dates_model import BookingDates
 
 
 class BookingCreateRequest(BaseModel):

@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from models.booking_create_request_model import BookingCreateRequest
+from models.booking.booking_create_request_model import BookingCreateRequest
 
 
 class BookingCreateResponse(BaseModel):
