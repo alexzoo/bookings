@@ -3,6 +3,9 @@ from client.api_client import ApiClient
 
 
 class Bookings:
+    # for update and delete needs only admin token
+    ADMIN_TOKEN_HEADER = {"Authorization": "Basic YWRtaW46cGFzc3dvcmQxMjM="}
+
     def __init__(self, api_client):
         self.api_client = api_client
 
@@ -95,9 +98,8 @@ class Bookings:
         Returns:
             dict: The JSON response from the API after updating the booking.
         """
-        # method update pass only admin token
-        headers = {"Authorization": "Basic YWRtaW46cGFzc3dvcmQxMjM="}
-        response = self.api_client.put(f'/booking/{booking_id}', json=update_booking_data, headers=headers)
+        response = self.api_client.put(f'/booking/{booking_id}', json=update_booking_data,
+                                       headers=self.ADMIN_TOKEN_HEADER)
         assert response.status_code == expected_status, (f"Unexpected status code: {response.status_code}, "
                                                          f"expected: {expected_status}")
         return parse_json_response(response)
@@ -110,10 +112,7 @@ class Bookings:
         :param expected_status: The expected status code of the response (default is 200).
         :return: The parsed JSON response from the API.
         """
-        # method delete pass only admin token
-        headers = {"Authorization": "Basic YWRtaW46cGFzc3dvcmQxMjM="}
-
-        response = self.api_client.delete(f'/booking/{booking_id}', headers=headers)
+        response = self.api_client.delete(f'/booking/{booking_id}', headers=self.ADMIN_TOKEN_HEADER)
         assert response.status_code == expected_status, (f"Unexpected status code: {response.status_code}, "
                                                          f"expected: {expected_status}")
         return parse_json_response(response)
