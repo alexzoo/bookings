@@ -3,7 +3,7 @@ from client.api_client import ApiClient
 
 
 class Bookings:
-    # for update and delete needs only admin token
+    # for update and delete methods needs only admin token
     ADMIN_TOKEN_HEADER = {"Authorization": "Basic YWRtaW46cGFzc3dvcmQxMjM="}
 
     def __init__(self, api_client):
