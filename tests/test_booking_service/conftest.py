@@ -8,11 +8,12 @@ from models.booking.booking_create_response_model import BookingCreateResponse
 from models.booking.booking_create_request_model import BookingCreateRequest
 from models.booking.booking_dates_model import BookingDates
 from services.booking_service.booking_service import Bookings
+from tests.conftest import api_client
 
 
-@pytest.fixture
-def bookings():
-    return Bookings()
+@pytest.fixture(scope='session')
+def bookings(api_client):
+    return Bookings(api_client=api_client)
 
 
 @pytest.fixture(scope='function')

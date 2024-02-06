@@ -3,8 +3,8 @@ from client.api_client import ApiClient
 
 
 class Bookings:
-    def __init__(self):
-        self.api_client = ApiClient()
+    def __init__(self, api_client):
+        self.api_client = api_client
 
     def get_all(self, expected_status=200):
         """
@@ -95,7 +95,9 @@ class Bookings:
         Returns:
             dict: The JSON response from the API after updating the booking.
         """
-        response = self.api_client.put(f'/booking/{booking_id}', json=update_booking_data)
+        # method update pass only admin token
+        headers = {"Authorization": "Basic YWRtaW46cGFzc3dvcmQxMjM="}
+        response = self.api_client.put(f'/booking/{booking_id}', json=update_booking_data, headers=headers)
         assert response.status_code == expected_status, (f"Unexpected status code: {response.status_code}, "
                                                          f"expected: {expected_status}")
         return parse_json_response(response)
@@ -108,7 +110,10 @@ class Bookings:
         :param expected_status: The expected status code of the response (default is 200).
         :return: The parsed JSON response from the API.
         """
-        response = self.api_client.delete(f'/booking/{booking_id}')
+        # method delete pass only admin token
+        headers = {"Authorization": "Basic YWRtaW46cGFzc3dvcmQxMjM="}
+
+        response = self.api_client.delete(f'/booking/{booking_id}', headers=headers)
         assert response.status_code == expected_status, (f"Unexpected status code: {response.status_code}, "
                                                          f"expected: {expected_status}")
         return parse_json_response(response)

@@ -14,11 +14,11 @@ load_dotenv()
 class ApiClient:
     def __init__(self) -> None:
         self.base_url: str = os.getenv('API_BASE_URL')
-        self.token: str = os.getenv('TOKEN')
         self.session: Session = requests.Session()
-        if self.token:
-            self.session.headers.update({"Authorization": f"Basic {self.token}"})
         self.logger = ApiLogger(__name__)
+
+    def set_token(self, token: str) -> None:
+        self.session.headers.update({"Authorization": f"Bearer {token}"})
 
     def get(self, path: str, **kwargs: Any) -> Response:
         """
