@@ -7,7 +7,7 @@ from faker import Faker
 from models.booking.booking_create_response_model import BookingCreateResponse
 from models.booking.booking_create_request_model import BookingCreateRequest
 from models.booking.booking_dates_model import BookingDates
-from services.booking_Service.booking_service import Bookings
+from services.booking_service.booking_service import Bookings
 
 
 @pytest.fixture
