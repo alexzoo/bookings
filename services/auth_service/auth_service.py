@@ -1,11 +1,13 @@
 from client.api_client import ApiClient
 from utils.helpers import parse_json_response
+import allure
 
 
 class Auth:
     def __init__(self):
         self.api_client = ApiClient()
 
+    @allure.step("Create a token using the provided username and password")
     def create_token(self, username='admin', password='password123', expected_status=200):
         """
         Creates a token using the provided username and password.
