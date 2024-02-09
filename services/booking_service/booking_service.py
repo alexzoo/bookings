@@ -1,5 +1,5 @@
 from utils.helpers import parse_json_response
-from client.api_client import ApiClient
+import allure
 
 
 class Bookings:
@@ -9,6 +9,7 @@ class Bookings:
     def __init__(self, api_client):
         self.api_client = api_client
 
+    @allure.step("Get all bookings")
     def get_all(self, expected_status=200):
         """
         Send a GET request to '/booking' and assert the response status code is as expected.
@@ -19,6 +20,7 @@ class Bookings:
                                                          f"expected: {expected_status}")
         return parse_json_response(response)
 
+    @allure.step('Get booking by name')
     def get_by_name(self, firstname, lastname, expected_status=200):
         """
         Sends a GET request to the '/booking' endpoint with the provided first name and last name as parameters.
@@ -35,6 +37,7 @@ class Bookings:
                                                          f"expected: {expected_status}")
         return parse_json_response(response)
 
+    @allure.step('Get booking by ID')
     def get_by_id(self, booking_id, expected_status=200):
         """
         Sends a GET request to retrieve a booking by its ID and checks the status code against the expected status.
@@ -47,6 +50,7 @@ class Bookings:
                                                          f"expected: {expected_status}")
         return parse_json_response(response)
 
+    @allure.step('Get booking by check-in date')
     def get_by_checkin(self, checkin, expected_status=200):
         """
         Sends a GET request to the '/booking' endpoint with the specified check-in date.
@@ -59,6 +63,7 @@ class Bookings:
                                                          f"expected: {expected_status}")
         return parse_json_response(response)
 
+    @allure.step('Get booking by check-out date')
     def get_by_checkout(self, checkout, expected_status=200):
         """
         Sends a GET request to the '/booking' endpoint with the provided checkout parameter.
@@ -73,6 +78,7 @@ class Bookings:
                                                          f"expected: {expected_status}")
         return parse_json_response(response)
 
+    @allure.step('Create a new booking')
     def create(self, booking_data, expected_status=200):
         """
         Creates a new booking using the provided booking data.
@@ -86,6 +92,7 @@ class Bookings:
                                                          f"expected: {expected_status}")
         return parse_json_response(response)
 
+    @allure.step('Update a booking')
     def update(self, booking_id, update_booking_data, expected_status=200):
         """
         Updates a booking with the given booking ID using the provided data.
@@ -104,6 +111,7 @@ class Bookings:
                                                          f"expected: {expected_status}")
         return parse_json_response(response)
 
+    @allure.step('Delete a booking by ID')
     def delete(self, booking_id, expected_status=200):
         """
         Delete a booking by its ID.

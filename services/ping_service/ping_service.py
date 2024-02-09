@@ -1,10 +1,12 @@
 from client.api_client import ApiClient
+import allure
 
 
 class Ping:
     def __init__(self):
         self.api_client = ApiClient()
 
+    @allure.step("Perform a health check")
     def health_check(self, expected_status=201):
         """
         Perform a health check by sending a GET request to '/ping' endpoint and asserting the response status code
