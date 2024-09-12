@@ -31,3 +31,6 @@ result.xml
 allure-results/
 
 
+
+# ignore gitpmoji directory
+gitpmoji
