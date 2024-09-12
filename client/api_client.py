@@ -102,8 +102,4 @@ class ApiClient:
         self.logger.log_response(response)
         return response
 
-    def new_method(self, method: str, path: str, **kwargs: Any) -> Response:
-        pass
-    # Add any other methods as needed
 
-    
