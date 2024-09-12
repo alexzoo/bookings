@@ -102,4 +102,7 @@ class ApiClient:
         self.logger.log_response(response)
         return response
 
+    def head(self, path: str, **kwargs: Any) -> Response:
+        pass
 
+    
